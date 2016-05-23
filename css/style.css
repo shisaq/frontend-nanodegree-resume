@@ -61,6 +61,15 @@ h5 {
 
 }
 
+/* add icon fonts, by http://weloveiconfonts.com/ */
+/* zocial */
+[class*="zocial-"]:before {
+  font-family: 'zocial', sans-serif;
+}
+/* typicons */
+[class*="typicons-"]:before {
+  font-family: 'Typicons', sans-serif;
+}
 
 .date-text {
   font-style: italic;
@@ -139,6 +148,10 @@ a {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 10px;
+}
+
+.flex-item {
+  color: #f5ae23;
 }
 
 .center-content {

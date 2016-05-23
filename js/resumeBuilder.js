@@ -58,9 +58,7 @@ var projects = {
       "description": "I learned the technique in Udacity",
       "images": [
         "images/001.jpg",
-        "images/002.jpg",
-        "images/003.jpg",
-        "images/004.jpg"
+        "images/002.jpg"
       ]
     },
     {
@@ -69,9 +67,7 @@ var projects = {
       "description": "This is the first website I established",
       "images": [
         "images/005.jpg",
-        "images/006.jpg",
-        "images/007.jpg",
-        "images/008.jpg"
+        "images/006.jpg"
       ]
     }
   ]
@@ -184,3 +180,25 @@ bio.display = function () {
 }
 bio.display();
 
+work.display = function () {
+  $('#workExperience').append(HTMLworkStart);
+
+  work.jobs.forEach( function(job) {
+    var formattedEmployer = HTMLworkEmployer.replace('%data%', job.employer);
+    var formattedTitle = HTMLworkTitle.replace('%data%', job.title);
+    var formattedDates = HTMLworkDates.replace('%data%', job.dates);
+    var formattedLocation = HTMLworkLocation.replace('%data%', job.location);
+    var formattedDescription = HTMLworkDescription.replace('%data%', job.description);
+
+    var formattedJob = formattedEmployer + formattedTitle + formattedDates +formattedLocation + formattedDescription;
+    $('.work-entry').append(formattedJob);
+  });
+}
+work.display();
+
+project.display = function () {
+  $('#projects').append(HTMLprojectStart);
+
+
+}
+project.display();
