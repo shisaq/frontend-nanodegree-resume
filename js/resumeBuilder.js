@@ -3,18 +3,18 @@
 * @shisaq
 */
 var bio = {
-  "name": "Shisaq Lee",
+  "name": "shisaq lee",
   "role": "Front-end Developer",
   "contacts": {
     "mobile": "412-500-2278",
     "email": "shisaq@gmail.com",
-    "twitter": "@shisaq",
+    "twitter": "shisaq",
     "github": "shisaq",
     "blog": "shisaq.com",
     "location": "Pittsburgh, PA, USA"
   },
-  "picture_URL": "images/carton.jpg",
-  "welcomeMessage": "This picture is just for fun! XD",
+  "picture_URL": "images/mypic.png",
+  "welcomeMessage": "Welcome, Dear Udacity Reviewer!",
   "skills": [
     "Ukulele",
     "HTML",
@@ -120,3 +120,67 @@ var education = {
     }
   ]
 };
+
+/**
+* Encapsulate displays in each objects
+* @shisaq
+*/
+// bio.display starts
+bio.display = function () {
+  //make each first letter of the name to uppercase
+  var nameArray = bio.name.trim().split(' ');
+  var newNameArray = [];
+  nameArray.forEach( function(val) {
+    val = val.slice(0, 1).toUpperCase() + val.slice(1).toLowerCase();
+    newNameArray.push(val);
+  });
+  var newName = newNameArray.join(' ');
+
+  //add name and role
+  var formattedName = HTMLheaderName.replace('%data%', newName);
+  var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
+  $('#header').prepend(formattedRole);
+  $('#header').prepend(formattedName);
+
+  // Add contacts
+
+  // This is a generic method, but I have no idea on adding a tag and define the content of each one, so I gave up on this.
+  // for (contact in bio.contacts) {
+  //   if (bio.contacts.hasOwnProperty(contact)) {
+  //     var formattedContact = HTMLcontactGeneric.replace('%contact%', contact);
+  //     formattedContact = formattedContact.replace('%data%', bio.contacts[contact]);
+
+  //     $('#topContacts').append(formattedContact);
+  //   }
+  // }
+
+  // This version contains a tag
+  var formattedMobile = HTMLmobile.replace('%data%', '<a href="tel:' + bio.contacts.mobile + '" target="new">' + bio.contacts.mobile + '</a>');
+  var formattedEmail = HTMLemail.replace('%data%', '<a href="mailto:' + bio.contacts.email + '" target="new">' + bio.contacts.email + '</a>');
+  var formattedTwitter = HTMLtwitter.replace('%data%', '<a href="https://twitter.com/' + bio.contacts.twitter + '" target="new">' + bio.contacts.twitter + '</a>');
+  var formattedGithub = HTMLgithub.replace('%data%', '<a href="https://github.com/' + bio.contacts.github + '" target="new">' + bio.contacts.github + '</a>');
+  var formattedBlog = HTMLblog.replace('%data%', '<a href="http://' + bio.contacts.blog + '" target="new">' + bio.contacts.blog + '</a>');
+  var formattedLocation = HTMLlocation.replace('%data%', '<a href="https://www.google.com/maps/place/' + bio.contacts.location + '" target="new">' + bio.contacts.location + '</a>');
+
+  var formattedContact = formattedMobile + formattedEmail + formattedTwitter + formattedGithub + formattedBlog + formattedLocation;
+  $('#topContacts').append(formattedContact);
+
+  //add bio picture and welcome message
+  var formattedBioPic = HTMLbioPic.replace('%data%', bio.picture_URL);
+  var formattedWelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage);
+
+  $('#header').append(formattedBioPic);
+  $('#header').append(formattedWelcomeMsg);
+
+  //add skills
+  if (bio.skills.length > 0) {
+    $('#header').append(HTMLskillsStart);
+
+    bio.skills.forEach(function(skill) {
+      var formattedSkill = HTMLskills.replace('%data%', skill);
+      $('#skills').append(formattedSkill);
+    });
+  }
+}
+bio.display();
+
