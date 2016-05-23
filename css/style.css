@@ -154,6 +154,13 @@ a {
   color: #f5ae23;
 }
 
+.flex-img {
+  max-width: 30%;
+  display: inline-block;
+  max-height: 20vw;
+  overflow: hidden;
+}
+
 .center-content {
   padding: 2.5% 5%;
 }

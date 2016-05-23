@@ -57,8 +57,8 @@ var projects = {
       "dates": "May 1st, 2016 -- May 18th, 2016",
       "description": "I learned the technique in Udacity",
       "images": [
-        "images/001.jpg",
-        "images/002.jpg"
+        "images/first1.png",
+        "images/first2.png"
       ]
     },
     {
@@ -66,8 +66,8 @@ var projects = {
       "dates": "Jur 1st, 2016 -- May 17th, 2016",
       "description": "This is the first website I established",
       "images": [
-        "images/005.jpg",
-        "images/006.jpg"
+        "images/lab1.png",
+        "images/lab2.png"
       ]
     }
   ]
@@ -180,6 +180,7 @@ bio.display = function () {
 }
 bio.display();
 
+//add works
 work.display = function () {
   $('#workExperience').append(HTMLworkStart);
 
@@ -196,9 +197,28 @@ work.display = function () {
 }
 work.display();
 
-project.display = function () {
-  $('#projects').append(HTMLprojectStart);
+//add projects
+projects.display = function () {
+  //traverse every project
+  projects.projects.forEach( function(project) {
+    $('#projects').append(HTMLprojectStart);
 
+    var formattedTitle = HTMLprojectTitle.replace('%data%', project.title);
+    var formattedDates = HTMLprojectDates.replace('%data%', project.dates);
+    var formattedDescription = HTMLprojectDescription.replace('%data%', project.description);
+    var formattedImages = [];
+    //add every image to formattedImages
+    if (project.images.length > 0) {
+      project.images.forEach( function(image) {
+        formattedImages = formattedImages + HTMLprojectImage.replace('%data%', image);
+      });
+    }
 
+    var formattedProject = formattedTitle + formattedDates +formattedDescription + formattedImages;
+    $('.project-entry:last').append(formattedProject);
+  });
 }
-project.display();
+projects.display();
+
+//add education
+
