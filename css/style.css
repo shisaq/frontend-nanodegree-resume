@@ -42,7 +42,7 @@ h2 {
 h3 {
   font-style: italic;
   font-size: 20px;
-  color: #000;
+  color: #4a4a4a;
   line-height: 22px;
 }
 
@@ -155,9 +155,8 @@ a {
 }
 
 .flex-img {
-  max-width: 30%;
+  max-width: 45%;
   display: inline-block;
-  max-height: 20vw;
   overflow: hidden;
 }
 
@@ -186,6 +185,10 @@ span {
 
 #lets-connect {
   text-align: center;
+}
+
+#onlineClasses {
+  padding: 15px 0;
 }
 
 /* Media queries to handle various device widths */

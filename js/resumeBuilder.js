@@ -57,8 +57,8 @@ var projects = {
       "dates": "May 1st, 2016 -- May 18th, 2016",
       "description": "I learned the technique in Udacity",
       "images": [
-        "images/first1.png",
-        "images/first2.png"
+        "images/first1.jpg",
+        "images/first2.jpg"
       ]
     },
     {
@@ -66,8 +66,8 @@ var projects = {
       "dates": "Jur 1st, 2016 -- May 17th, 2016",
       "description": "This is the first website I established",
       "images": [
-        "images/lab1.png",
-        "images/lab2.png"
+        "images/lab1.jpg",
+        "images/lab2.jpg"
       ]
     }
   ]
@@ -77,7 +77,7 @@ var education = {
   "schools": [
     {
       "name": "Nanyang Institute of Technology",
-      "location": "Beijing, China",
+      "location": "Nanyang, China",
       "degree": "Bechelor",
       "majors": [
         "Software Engineering",
@@ -90,7 +90,7 @@ var education = {
     {
       "name": "Nanzhao High School",
       "location": "Nanyang, China",
-      "degree": "N.O.",
+      "degree": "None",
       "majors": [
         "English",
         "Chinese",
@@ -160,6 +160,7 @@ bio.display = function () {
 
   var formattedContact = formattedMobile + formattedEmail + formattedTwitter + formattedGithub + formattedBlog + formattedLocation;
   $('#topContacts').append(formattedContact);
+  $('#footerContacts').append(formattedContact);
 
   //add bio picture and welcome message
   var formattedBioPic = HTMLbioPic.replace('%data%', bio.picture_URL);
@@ -221,4 +222,35 @@ projects.display = function () {
 projects.display();
 
 //add education
+education.display = function () {
+  //add education.schools
+  education.schools.forEach( function(school) {
+    $('#education').append(HTMLschoolStart);
 
+    var formattedName = HTMLschoolName.replace('%data%', school.name);
+    formattedName = formattedName.replace('#', school.url);
+    var formattedDegree = HTMLschoolDegree.replace('%data%', school.degree);
+    var formattedDates = HTMLschoolDates.replace('%data%', school.dates);
+    var formattedLocation = HTMLschoolLocation.replace('%data%', school.location);
+    var formattedMajor = HTMLschoolMajor.replace('%data%', school.majors);
+
+    var formattedSchool = formattedName + formattedDegree + formattedDates + formattedLocation + formattedMajor;
+    $('.education-entry:last').append(formattedSchool);
+  });
+
+  //add online courses
+  $('#education').append(HTMLschoolStart);
+  $('.education-entry:last').append(HTMLonlineClasses);
+  education.onlineCourses.forEach( function(course) {
+    var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', course.title);
+    formattedOnlineTitle = formattedOnlineTitle.replace('#', 'https://www.udacity.com');
+    var formattedOnlineSchool = HTMLonlineSchool.replace('%data%', course.school);
+    var formattedOnlineDates = HTMLonlineDates.replace('%data%', course.dates);
+    var formattedOnlineURL = HTMLonlineURL.replace('%data%', course.url);
+    formattedOnlineURL = formattedOnlineURL.replace('#', course.url);
+
+    var formattedOnlineCourse = formattedOnlineTitle + formattedOnlineSchool + formattedOnlineDates + formattedOnlineURL;
+    $('.education-entry:last').append(formattedOnlineCourse);
+  });
+}
+education.display();
