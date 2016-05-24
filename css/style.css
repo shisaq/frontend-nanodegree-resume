@@ -109,11 +109,12 @@ em {
   font-style: italic;
   font-size: 18px;
   color: #fcfff5;
-  line-height: 28px;
+  line-height: 40px;
 }
 
 #skills-h3 {
   color: #91aa9d;
+  margin-top: 70px;
   display: none;
 }
 
@@ -149,6 +150,10 @@ em {
   color: #d1dbbd;
 }
 
+#googleStyleGaugesTool {
+  float: right;
+}
+
 .flex-box {
   display: -webkit-flex;
   display: flex;
@@ -180,6 +185,7 @@ ul {
   float: left;
   padding: 10px;
   width: 200px;
+  border-radius: 15px;
   display: none;
 }
 
@@ -223,6 +229,10 @@ span {
   .welcome-message {
     display: none;
   }
+  #googleStyleGaugesTool {
+  float: none;
+  text-align: center;
+}
 }
 
 #map {

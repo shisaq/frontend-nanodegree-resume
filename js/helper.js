@@ -59,7 +59,7 @@ var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
 
 //define google style gauges related content
-var googleStyleGaugesTool = '<span id="memoryGaugeContainer"></span><span id="cpuGaugeContainer"></span><span id="networkGaugeContainer"></span><span id="testGaugeContainer"></span>';
+var googleStyleGaugesTool = '<div id="googleStyleGaugesTool"><span id="memoryGaugeContainer"></span><span id="cpuGaugeContainer"></span><span id="networkGaugeContainer"></span><span id="testGaugeContainer"></span></div>';
 
 
 /*

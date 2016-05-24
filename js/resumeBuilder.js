@@ -263,8 +263,3 @@ education.display();
 * Add Google Map
 */
 $('#mapDiv').append(googleMap);
-
-/**
-* space time
-* @d3
-*/
