@@ -14,6 +14,7 @@ The <head> of a website generally links to important resources the page will
 need to load. You'll see a lot of <link>s to CSS files for styles and
 <scripts> for JavaScript files to build interactions.
 -->
+
 <head>
   <!-- This tells the browser how to read the document. -->
   <meta charset="utf-8">
@@ -52,74 +53,74 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   Uncomment the <script> tag below when you're ready to add an interactive
   Google Map to your resume!
   -->
-<script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
   <!--
   Insert D3, from: https://d3js.org/
   -->
-<script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
 
   <!-- Insert google style gauges, reference: http://bl.ocks.org/tomerd/1499279
   -->
-<script src="js/gauge.js"></script>
+  <script src="js/gauge.js"></script>
   <!--
   Gauges related script
   -->
-<script>
-  var gauges = [];
+  <script>
+    var gauges = [];
 
-      function createGauge(name, label, min, max)
-      {
-        var config =
-        {
-          size: 120,
-          label: label,
-          min: undefined != min ? min : 0,
-          max: undefined != max ? max : 100,
-          minorTicks: 5
-        }
-
-        var range = config.max - config.min;
-        config.yellowZones = [{ from: config.min + range*0.75, to: config.min + range*0.9 }];
-        config.redZones = [{ from: config.min + range*0.9, to: config.max }];
-
-        gauges[name] = new Gauge(name + "GaugeContainer", config);
-        gauges[name].render();
+    function createGauge(name, label, min, max) {
+      var config = {
+        size: 120,
+        label: label,
+        min: undefined != min ? min : 0,
+        max: undefined != max ? max : 100,
+        minorTicks: 5
       }
 
-      function createGauges()
-      {
-        createGauge("memory", "Memory");
-        createGauge("cpu", "CPU");
-        createGauge("network", "Network");
-        //createGauge("test", "Test", -50, 50 );
-      }
+      var range = config.max - config.min;
+      config.yellowZones = [{
+        from: config.min + range * 0.75,
+        to: config.min + range * 0.9
+      }];
+      config.redZones = [{
+        from: config.min + range * 0.9,
+        to: config.max
+      }];
 
-      function updateGauges()
-      {
-        for (var key in gauges)
-        {
-          var value = getRandomValue(gauges[key])
-          gauges[key].redraw(value);
-        }
-      }
+      gauges[name] = new Gauge(name + "GaugeContainer", config);
+      gauges[name].render();
+    }
 
-      function getRandomValue(gauge)
-      {
-        var overflow = 0; //10;
-        return gauge.config.min - overflow + (gauge.config.max - gauge.config.min + overflow*2) *  Math.random();
-      }
+    function createGauges() {
+      createGauge("memory", "Memory");
+      createGauge("cpu", "CPU");
+      createGauge("network", "Network");
+      //createGauge("test", "Test", -50, 50 );
+    }
 
-      function initialize()
-      {
-        createGauges();
-        setInterval(updateGauges, 5000);
+    function updateGauges() {
+      for (var key in gauges) {
+        var value = getRandomValue(gauges[key])
+        gauges[key].redraw(value);
       }
-    </script>
-</script>
+    }
+
+    function getRandomValue(gauge) {
+      var overflow = 0; //10;
+      return gauge.config.min - overflow + (gauge.config.max - gauge.config.min + overflow * 2) * Math.random();
+    }
+
+    function initialize() {
+      createGauges();
+      setInterval(updateGauges, 5000);
+    }
+
+  </script>
 
   <meta name="viewport" content="width=device-width">
 </head>
+
 <body onload="initialize()">
   <div id="main">
 
@@ -141,7 +142,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     </div>
     <div id="lets-connect" class="dark-gray">
       <h2 class="orange center-text">Let's Connect</h2>
-        <ul id="footerContacts" class="flex-box">
+      <ul id="footerContacts" class="flex-box">
       </ul>
     </div>
   </div>
@@ -177,27 +178,29 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     */
 
 
-    if(document.getElementsByClassName('flex-item').length === 0) {
+    if (document.getElementsByClassName('flex-item').length === 0) {
       document.getElementById('topContacts').style.display = 'none';
     }
-    if(document.getElementsByTagName('h1').length === 0) {
+    if (document.getElementsByTagName('h1').length === 0) {
       document.getElementById('header').style.display = 'none';
     }
-    if(document.getElementsByClassName('work-entry').length === 0) {
+    if (document.getElementsByClassName('work-entry').length === 0) {
       document.getElementById('workExperience').style.display = 'none';
     }
-    if(document.getElementsByClassName('project-entry').length === 0) {
+    if (document.getElementsByClassName('project-entry').length === 0) {
       document.getElementById('projects').style.display = 'none';
     }
-    if(document.getElementsByClassName('education-entry').length === 0) {
+    if (document.getElementsByClassName('education-entry').length === 0) {
       document.getElementById('education').style.display = 'none';
     }
-    if(document.getElementsByClassName('flex-item').length === 0) {
+    if (document.getElementsByClassName('flex-item').length === 0) {
       document.getElementById('lets-connect').style.display = 'none';
     }
-    if(document.getElementById('map') === null) {
+    if (document.getElementById('map') === null) {
       document.getElementById('mapDiv').style.display = 'none';
     }
+
   </script>
 </body>
+
 </html>

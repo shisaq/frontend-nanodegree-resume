@@ -181,8 +181,7 @@ bio.display = function () {
       $('#skills').append(formattedSkill);
     });
   }
-
-}
+};
 bio.display();
 
 //add works
@@ -199,7 +198,7 @@ work.display = function () {
     var formattedJob = formattedEmployer + formattedTitle + formattedDates +formattedLocation + formattedDescription;
     $('.work-entry').append(formattedJob);
   });
-}
+};
 work.display();
 
 //add projects
@@ -222,7 +221,7 @@ projects.display = function () {
     var formattedProject = formattedTitle + formattedDates +formattedDescription + formattedImages;
     $('.project-entry:last').append(formattedProject);
   });
-}
+};
 projects.display();
 
 //add education
@@ -256,7 +255,7 @@ education.display = function () {
     var formattedOnlineCourse = formattedOnlineTitle + formattedOnlineSchool + formattedOnlineDates + formattedOnlineURL;
     $('.education-entry:last').append(formattedOnlineCourse);
   });
-}
+};
 education.display();
 
 /**
