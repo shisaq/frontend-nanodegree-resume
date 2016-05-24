@@ -157,7 +157,7 @@ bio.display = function () {
   // Add contacts
 
   // This is a generic method, I feel quite happy to learn form the reviewer! It made me learn deeper!!!
-  for (contact in bio.contacts) {
+  for (var contact in bio.contacts) {
     if (bio.contacts.hasOwnProperty(contact)) {
       var formattedContact = HTMLcontactGeneric.replace('%tag%', bio.tags[contact])
                                                .replace('%contact%', contact)
@@ -263,9 +263,9 @@ education.display = function () {
 
   //add online courses
   $('#education').append(HTMLonlineClasses);
-  $('#education').append(HTMLschoolStart);
 
   education.onlineCourses.forEach( function(course) {
+    $('#education').append(HTMLschoolStart);
     var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', course.title);
     formattedOnlineTitle = formattedOnlineTitle.replace('#', 'https://www.udacity.com');
     var formattedOnlineSchool = HTMLonlineSchool.replace('%data%', course.school);

@@ -182,15 +182,11 @@ function initializeMap() {
     });
 
     // hmmmm, I wonder what this is about...
-    google.maps.event.addListener(marker, 'hover', function() {
+    google.maps.event.addListener(marker, 'mouseover', function() {
       infoWindow.open(map, marker);
     });
-    google.maps.event.addListener(marker, 'click', function() {
-      infoWindow.open(map, marker);
-      setTimeout(function() {
-        infoWindow.close();
-      }, 3000);
-      return false;
+    google.maps.event.addListener(marker, 'mouseout', function() {
+      infoWindow.close();
     });
 
     // this is where the pin actually gets added to the map.
