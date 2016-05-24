@@ -18,8 +18,8 @@ function Gauge(placeholderName, configuration)
     this.config.cx = this.config.size / 2;
     this.config.cy = this.config.size / 2;
 
-    this.config.min = undefined != configuration.min ? configuration.min : 0;
-    this.config.max = undefined != configuration.max ? configuration.max : 100;
+    this.config.min = undefined !== configuration.min ? configuration.min : 0;
+    this.config.max = undefined !== configuration.max ? configuration.max : 100;
     this.config.range = this.config.max - this.config.min;
 
     this.config.majorTicks = configuration.majorTicks || 5;
@@ -30,7 +30,7 @@ function Gauge(placeholderName, configuration)
     this.config.redColor  = configuration.redColor || "#DC3912";
 
     this.config.transitionDuration = configuration.transitionDuration || 500;
-  }
+  };
 
   this.render = function()
   {
@@ -58,22 +58,29 @@ function Gauge(placeholderName, configuration)
 
     for (var index in this.config.greenZones)
     {
-      this.drawBand(this.config.greenZones[index].from, this.config.greenZones[index].to, self.config.greenColor);
+      if (this.config.greenZones.hasOwnProperty(index)) {
+        this.drawBand(this.config.greenZones[index].from, this.config.greenZones[index].to, self.config.greenColor);
+      }
     }
 
-    for (var index in this.config.yellowZones)
+    for (index in this.config.yellowZones)
     {
-      this.drawBand(this.config.yellowZones[index].from, this.config.yellowZones[index].to, self.config.yellowColor);
+      if (this.config.yellowZones.hasOwnProperty(index)) {
+        this.drawBand(this.config.yellowZones[index].from, this.config.yellowZones[index].to, self.config.yellowColor);
+      }
     }
 
-    for (var index in this.config.redZones)
+    for (index in this.config.redZones)
     {
-      this.drawBand(this.config.redZones[index].from, this.config.redZones[index].to, self.config.redColor);
+      if (this.config.redZones.hasOwnProperty(index)) {
+        this.drawBand(this.config.redZones[index].from, this.config.redZones[index].to, self.config.redColor);
+      }
     }
 
-    if (undefined != this.config.label)
+    var fontSize;
+    if (undefined !== this.config.label)
     {
-      var fontSize = Math.round(this.config.size / 9);
+      fontSize = Math.round(this.config.size / 9);
       this.body.append("svg:text")
             .attr("x", this.config.cx)
             .attr("y", this.config.cy / 2 + fontSize / 2)
@@ -85,15 +92,16 @@ function Gauge(placeholderName, configuration)
             .style("stroke-width", "0px");
     }
 
-    var fontSize = Math.round(this.config.size / 16);
+    fontSize = Math.round(this.config.size / 16);
     var majorDelta = this.config.range / (this.config.majorTicks - 1);
     for (var major = this.config.min; major <= this.config.max; major += majorDelta)
     {
+      var point1, point2;
       var minorDelta = majorDelta / this.config.minorTicks;
       for (var minor = major + minorDelta; minor < Math.min(major + majorDelta, this.config.max); minor += minorDelta)
       {
-        var point1 = this.valueToPoint(minor, 0.75);
-        var point2 = this.valueToPoint(minor, 0.85);
+        point1 = this.valueToPoint(minor, 0.75);
+        point2 = this.valueToPoint(minor, 0.85);
 
         this.body.append("svg:line")
               .attr("x1", point1.x)
@@ -104,8 +112,8 @@ function Gauge(placeholderName, configuration)
               .style("stroke-width", "1px");
       }
 
-      var point1 = this.valueToPoint(major, 0.7);
-      var point2 = this.valueToPoint(major, 0.85);
+      point1 = this.valueToPoint(major, 0.7);
+      point2 = this.valueToPoint(major, 0.85);
 
       this.body.append("svg:line")
             .attr("x1", point1.x)
@@ -138,8 +146,8 @@ function Gauge(placeholderName, configuration)
     var pointerPath = this.buildPointerPath(midValue);
 
     var pointerLine = d3.svg.line()
-                  .x(function(d) { return d.x })
-                  .y(function(d) { return d.y })
+                  .x(function(d) { return d.x; })
+                  .y(function(d) { return d.y; })
                   .interpolate("basis");
 
     pointerContainer.selectAll("path")
@@ -149,7 +157,7 @@ function Gauge(placeholderName, configuration)
                   .attr("d", pointerLine)
                   .style("fill", "#dc3912")
                   .style("stroke", "#c63310")
-                  .style("fill-opacity", 0.7)
+                  .style("fill-opacity", 0.7);
 
     pointerContainer.append("svg:circle")
               .attr("cx", this.config.cx)
@@ -159,7 +167,7 @@ function Gauge(placeholderName, configuration)
               .style("stroke", "#666")
               .style("opacity", 1);
 
-    var fontSize = Math.round(this.config.size / 10);
+    fontSize = Math.round(this.config.size / 10);
     pointerContainer.selectAll("text")
               .data([midValue])
               .enter()
@@ -173,7 +181,7 @@ function Gauge(placeholderName, configuration)
                   .style("stroke-width", "0px");
 
     this.redraw(this.config.min, 0);
-  }
+  };
 
   this.buildPointerPath = function(value)
   {
@@ -197,7 +205,7 @@ function Gauge(placeholderName, configuration)
       point.y -= self.config.cy;
       return point;
     }
-  }
+  };
 
   this.drawBand = function(start, end, color)
   {
@@ -210,8 +218,8 @@ function Gauge(placeholderName, configuration)
             .endAngle(this.valueToRadians(end))
             .innerRadius(0.65 * this.config.raduis)
             .outerRadius(0.85 * this.config.raduis))
-          .attr("transform", function() { return "translate(" + self.config.cx + ", " + self.config.cy + ") rotate(270)" });
-  }
+          .attr("transform", function() { return "translate(" + self.config.cx + ", " + self.config.cy + ") rotate(270)"; });
+  };
 
   this.redraw = function(value, transitionDuration)
   {
@@ -221,7 +229,7 @@ function Gauge(placeholderName, configuration)
 
     var pointer = pointerContainer.selectAll("path");
     pointer.transition()
-          .duration(undefined != transitionDuration ? transitionDuration : this.config.transitionDuration)
+          .duration(undefined !== transitionDuration ? transitionDuration : this.config.transitionDuration)
           //.delay(0)
           //.ease("linear")
           //.attr("transform", function(d)
@@ -238,27 +246,27 @@ function Gauge(placeholderName, configuration)
             {
               var rotation = currentRotation + (targetRotation-currentRotation)*step;
               return "translate(" + self.config.cx + ", " + self.config.cy + ") rotate(" + rotation + ")";
-            }
+            };
           });
-  }
+  };
 
   this.valueToDegrees = function(value)
   {
     // thanks @closealert
     //return value / this.config.range * 270 - 45;
     return value / this.config.range * 270 - (this.config.min / this.config.range * 270 + 45);
-  }
+  };
 
   this.valueToRadians = function(value)
   {
     return this.valueToDegrees(value) * Math.PI / 180;
-  }
+  };
 
   this.valueToPoint = function(value, factor)
   {
     return {  x: this.config.cx - this.config.raduis * factor * Math.cos(this.valueToRadians(value)),
           y: this.config.cy - this.config.raduis * factor * Math.sin(this.valueToRadians(value))    };
-  }
+  };
 
   // initialization
   this.configure(configuration);

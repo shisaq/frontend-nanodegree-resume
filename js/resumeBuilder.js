@@ -13,7 +13,7 @@ var bio = {
     "blog": "shisaq.com",
     "location": "Pittsburgh, PA, USA"
   },
-  "picture_URL": "images/mypic.png",
+  "biopic": "images/mypic.png",
   "welcomeMessage": "Welcome, Dear Udacity Reviewer!",
   "skills": [
     "Ukulele",
@@ -84,7 +84,7 @@ var education = {
         "Chinese",
         "Math"
       ],
-      "dates": 2008,
+      "dates": "2008",
       "url": "http://soft-bysj.nyist.net/"
     },
     {
@@ -97,7 +97,7 @@ var education = {
         "Hostory",
         "Math"
       ],
-      "dates": 2005,
+      "dates": "2005",
       "url": "http://www.nzxdzx.com/"
     }
   ],
@@ -105,13 +105,13 @@ var education = {
     {
       "title": "Front-end Nanodegree",
       "school": "Udacity",
-      "dates": 2016,
+      "date": "2016",
       "url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
     },
     {
       "title": "Intro to HTML and CSS",
       "school": "Udacity",
-      "dates": 2015,
+      "date": "2015",
       "url": "https://www.udacity.com/course/intro-to-html-and-css--ud304"
     }
   ]
@@ -163,7 +163,7 @@ bio.display = function () {
   $('#footerContacts').append(formattedContact);
 
   //add bio picture and welcome message
-  var formattedBioPic = HTMLbioPic.replace('%data%', bio.picture_URL);
+  var formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
   var formattedWelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage);
 
   $('#header').append(formattedBioPic);
@@ -186,9 +186,9 @@ bio.display();
 
 //add works
 work.display = function () {
-  $('#workExperience').append(HTMLworkStart);
-
   work.jobs.forEach( function(job) {
+    $('#workExperience').append(HTMLworkStart);
+
     var formattedEmployer = HTMLworkEmployer.replace('%data%', job.employer);
     var formattedTitle = HTMLworkTitle.replace('%data%', job.title);
     var formattedDates = HTMLworkDates.replace('%data%', job.dates);
@@ -196,7 +196,7 @@ work.display = function () {
     var formattedDescription = HTMLworkDescription.replace('%data%', job.description);
 
     var formattedJob = formattedEmployer + formattedTitle + formattedDates +formattedLocation + formattedDescription;
-    $('.work-entry').append(formattedJob);
+    $('.work-entry:last').append(formattedJob);
   });
 };
 work.display();
@@ -230,8 +230,7 @@ education.display = function () {
   education.schools.forEach( function(school) {
     $('#education').append(HTMLschoolStart);
 
-    var formattedName = HTMLschoolName.replace('%data%', school.name);
-    formattedName = formattedName.replace('#', school.url);
+    var formattedName = HTMLschoolName.replace('%data%', school.name).replace('#', school.url);
     var formattedDegree = HTMLschoolDegree.replace('%data%', school.degree);
     var formattedDates = HTMLschoolDates.replace('%data%', school.dates);
     var formattedLocation = HTMLschoolLocation.replace('%data%', school.location);
@@ -242,13 +241,14 @@ education.display = function () {
   });
 
   //add online courses
+  $('#education').append(HTMLonlineClasses);
   $('#education').append(HTMLschoolStart);
-  $('.education-entry:last').append(HTMLonlineClasses);
+
   education.onlineCourses.forEach( function(course) {
     var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', course.title);
     formattedOnlineTitle = formattedOnlineTitle.replace('#', 'https://www.udacity.com');
     var formattedOnlineSchool = HTMLonlineSchool.replace('%data%', course.school);
-    var formattedOnlineDates = HTMLonlineDates.replace('%data%', course.dates);
+    var formattedOnlineDates = HTMLonlineDates.replace('%data%', course.date);
     var formattedOnlineURL = HTMLonlineURL.replace('%data%', course.url);
     formattedOnlineURL = formattedOnlineURL.replace('#', course.url);
 

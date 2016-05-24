@@ -200,7 +200,7 @@ span {
 }
 
 #onlineClasses {
-  padding: 15px 0;
+  padding: 10px 5%;
 }
 
 /* Media queries to handle various device widths */
@@ -208,13 +208,13 @@ span {
 @media only screen and (max-width: 1024px) {
   #lets-connect {
     margin-top: 5%;
-  };
+  }
 }
 
 @media only screen and (max-width:900px) {
   .biopic {
     width: 175px;
-  };
+  }
 }
 
 @media only screen and (max-width: 750px) {
@@ -233,7 +233,7 @@ span {
   #googleStyleGaugesTool {
     float: none;
     text-align: center;
-  };
+  }
 }
 
 #map {
@@ -252,5 +252,5 @@ span {
   #skills-h3,
   .biopic {
     display: block;
-  };
+  }
 }
