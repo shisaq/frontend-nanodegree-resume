@@ -169,6 +169,9 @@ bio.display = function () {
   $('#header').append(formattedBioPic);
   $('#header').append(formattedWelcomeMsg);
 
+  //add google style gauges tool
+  $('#header').append(googleStyleGaugesTool);
+
   //add skills
   if (bio.skills.length > 0) {
     $('#header').append(HTMLskillsStart);
@@ -178,6 +181,7 @@ bio.display = function () {
       $('#skills').append(formattedSkill);
     });
   }
+
 }
 bio.display();
 
@@ -259,3 +263,8 @@ education.display();
 * Add Google Map
 */
 $('#mapDiv').append(googleMap);
+
+/**
+* space time
+* @d3
+*/

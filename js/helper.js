@@ -57,6 +57,7 @@ var HTMLonlineURL = '<br><a href="#">%data%</a>';
 
 var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
+var googleStyleGaugesTool = '<span id="memoryGaugeContainer"></span><span id="cpuGaugeContainer"></span><span id="networkGaugeContainer"></span><span id="testGaugeContainer"></span>';
 
 
 /*
