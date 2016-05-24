@@ -118,7 +118,7 @@ var education = {
 };
 
 /**
-* Encapsulate displays in each objects
+* Build and encapsulate displays in each objects
 * @shisaq
 */
 // bio.display starts
@@ -254,3 +254,8 @@ education.display = function () {
   });
 }
 education.display();
+
+/**
+* Add Google Map
+*/
+$('#mapDiv').append(googleMap);
