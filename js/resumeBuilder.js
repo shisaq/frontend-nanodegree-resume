@@ -13,6 +13,22 @@ var bio = {
     "blog": "shisaq.com",
     "location": "Pittsburgh, PA, USA"
   },
+  "links": {
+    "mobile": "del:",
+    "email": "mailto:",
+    "twitter": "https://twitter.com/",
+    "github": "https://twitter.com/",
+    "blog": "http://",
+    "location": "https://www.google.com/maps/place/"
+  },
+  "tags": {
+    "mobile": "call",
+    "email": "email",
+    "twitter": "twitter",
+    "github": "github",
+    "blog": "wordpress",
+    "location": "compass"
+  },
   "biopic": "images/mypic.png",
   "welcomeMessage": "Welcome, Dear Udacity Reviewer!",
   "skills": [
@@ -140,27 +156,32 @@ bio.display = function () {
 
   // Add contacts
 
-  // This is a generic method, but I have no idea on adding a tag and define the content of each one, so I gave up on this.
-  // for (contact in bio.contacts) {
-  //   if (bio.contacts.hasOwnProperty(contact)) {
-  //     var formattedContact = HTMLcontactGeneric.replace('%contact%', contact);
-  //     formattedContact = formattedContact.replace('%data%', bio.contacts[contact]);
+  // This is a generic method, I feel quite happy to learn form the reviewer! It made me learn deeper!!!
+  for (contact in bio.contacts) {
+    if (bio.contacts.hasOwnProperty(contact)) {
+      var formattedContact = HTMLcontactGeneric.replace('%tag%', bio.tags[contact])
+                                               .replace('%contact%', contact)
+                                               .replace('%link%', bio.links[contact])
+                                               .replace('%data%', bio.contacts[contact])
+                                               .replace('%data%', bio.contacts[contact]);
 
-  //     $('#topContacts').append(formattedContact);
-  //   }
-  // }
+      $('#topContacts, #footerContacts').append(formattedContact);
+    }
+  }
+  // "location" has a different class called "typicons-" instead of others. So I have to deal with this class:
+  $('#topContacts, #footerContacts').find('.flex-item:last()').addClass('typicons-compass');
 
-  // This version contains a tag
-  var formattedMobile = HTMLmobile.replace('%data%', '<a href="tel:' + bio.contacts.mobile + '" target="new">' + bio.contacts.mobile + '</a>');
-  var formattedEmail = HTMLemail.replace('%data%', '<a href="mailto:' + bio.contacts.email + '" target="new">' + bio.contacts.email + '</a>');
-  var formattedTwitter = HTMLtwitter.replace('%data%', '<a href="https://twitter.com/' + bio.contacts.twitter + '" target="new">' + bio.contacts.twitter + '</a>');
-  var formattedGithub = HTMLgithub.replace('%data%', '<a href="https://github.com/' + bio.contacts.github + '" target="new">' + bio.contacts.github + '</a>');
-  var formattedBlog = HTMLblog.replace('%data%', '<a href="http://' + bio.contacts.blog + '" target="new">' + bio.contacts.blog + '</a>');
-  var formattedLocation = HTMLlocation.replace('%data%', '<a href="https://www.google.com/maps/place/' + bio.contacts.location + '" target="new">' + bio.contacts.location + '</a>');
+  // This version is the original one, I don't like it, but I need keep it to compare with the newer one.
+  // var formattedMobile = HTMLmobile.replace('%data%', '<a href="tel:' + bio.contacts.mobile + '" target="new">' + bio.contacts.mobile + '</a>');
+  // var formattedEmail = HTMLemail.replace('%data%', '<a href="mailto:' + bio.contacts.email + '" target="new">' + bio.contacts.email + '</a>');
+  // var formattedTwitter = HTMLtwitter.replace('%data%', '<a href="https://twitter.com/' + bio.contacts.twitter + '" target="new">' + bio.contacts.twitter + '</a>');
+  // var formattedGithub = HTMLgithub.replace('%data%', '<a href="https://github.com/' + bio.contacts.github + '" target="new">' + bio.contacts.github + '</a>');
+  // var formattedBlog = HTMLblog.replace('%data%', '<a href="http://' + bio.contacts.blog + '" target="new">' + bio.contacts.blog + '</a>');
+  // var formattedLocation = HTMLlocation.replace('%data%', '<a href="https://www.google.com/maps/place/' + bio.contacts.location + '" target="new">' + bio.contacts.location + '</a>');
 
-  var formattedContact = formattedMobile + formattedEmail + formattedTwitter + formattedGithub + formattedBlog + formattedLocation;
-  $('#topContacts').append(formattedContact);
-  $('#footerContacts').append(formattedContact);
+  // var formattedContact = formattedMobile + formattedEmail + formattedTwitter + formattedGithub + formattedBlog + formattedLocation;
+  // $('#topContacts').append(formattedContact);
+  // $('#footerContacts').append(formattedContact);
 
   //add bio picture and welcome message
   var formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
